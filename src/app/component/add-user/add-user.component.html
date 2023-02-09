@@ -1,0 +1,44 @@
+<div class="all">
+<form  (ngSubmit)="save(myForm)" #myForm="ngForm">
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control"  name=firstName #firstName="ngModel" [(ngModel)]="emptyUser.FirstName" (change)="changeFirstName()" required placeholder="First name" pattern="^[א-תa-zA-Z]+$">
+      <div class="error" *ngIf="firstName.touched&&firstName.errors&&firstName.errors.required&&firstName.errors.pattern">first name is required</div>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" name=lastName #lastName="ngModel" [(ngModel)]="emptyUser.LastName" (change)="changeLastName()" required placeholder="Last name" pattern="^[א-תa-zA-Z]+$"/>
+      <div class="error" *ngIf="lastName.touched&&lastName.errors&&lastName.errors.required">last name is required</div>
+    </div>
+  </div>
+<input type="text" name=userTz class="form-control" placeholder="tz" #userTz="ngModel" [(ngModel)]="emptyUser.Tz" required minlength="9" maxlength="9"  pattern="^[0-9]*$"/>
+<div class="error" *ngIf="userTz.touched&&userTz.errors&&userTz.errors.required">tz is required</div>
+<br>
+  <input type="date" name=dateOfBirth class="form-control" #dateOfBirth="ngModel" [(ngModel)]="emptyUser.DateOfBirth" required/>
+<div class="error" *ngIf="dateOfBirth.touched&&dateOfBirth.errors&&dateOfBirth.errors.required">date of birth required</div>
+<br>
+<select class="form-select" id="validationCustom04" name=gender [(ngModel)]="gender" required>
+    <option>famle</option>
+    <option>male</option>
+  </select>
+  <br>
+  <input type="text"  name=HMO placeholder="HMO" #HMO="ngModel" class="form-control" [(ngModel)]="emptyUser.HMO" required/>
+<div class="error" *ngIf="HMO.touched&&HMO.errors&&HMO.errors.required">HMO is required</div>
+<br>
+  <input type="button" value="Add user" (click)="addUser()" class="butt"/>
+  <br>
+  <input type="text" name=nameChild placeholder="name of your child" class="form-control" #nameChild="ngModel" [(ngModel)]="emptyChild.Name" required/>
+<div class="error" *ngIf="nameChild.touched&&nameChild.errors&&nameChild.errors.required">name is required</div>
+<br>
+  <input type="text" name=childTz placeholder="tz of your child" class="form-control" #childTz="ngModel" [(ngModel)]="emptyChild.Tz" required minlength="9" maxlength="9"  pattern="^[0-9]*$"/>
+<div class="error" *ngIf="childTz.touched&&childTz.errors&&childTz.errors.required">tz is required</div>
+<br>
+  <input type="date" name=dateOfBirth [(ngModel)]="emptyChild.DateOfBirth" class="form-control" #dateOfBirth="ngModel" required/>
+<div class="error" *ngIf="dateOfBirth.touched&&dateOfBirth.errors&&dateOfBirth.errors.required">date of birth required</div>
+<br>
+  <input type="button" value="+ child" (click)="addChild()" class="butt"/>
+  <br>
+  <input type="submit" [disabled]="!myForm.valid" class="butt"/>
+</form>
+<br>
+<button (click)="goToInstructions()" class="butt">To Instructions</button>
+</div>
